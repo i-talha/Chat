@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      .col-left {
+        float: left;
+        width: 20ch;
+        border: 1px solid palegreen;
+        margin-right: 20px;
+        overflow: auto;
+        margin-left: 20px;
+        height: 200px;
+        border-radius: 4px;
+
+      }
+
+      .row {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 2px;
+        # border: 1px solid green;
+        clear: both;
+      }
+
+      .col-right {
+        margin-left: 10px;
+        float: right;
+      }
+
+      li {
+        list-style-type: none;
+      }
+
+      .messages {
+        border: 1px solid palegreen;
+        overflow: auto;
+        height: 400px;
+        margin-right: 10px;
+      }
+
+      .message-content {
+        width: 100ch;
+      }
+
+      .input-message-container {
+        margin-top: 50px;
+      }
+
+      input {
+        margin-top: 5px;
+        height: 30px;
+        width: 50ch;
+        overflow: auto;
+        /* border: none; */
+        /* border-bottom: 2px solid red; */
+      }
+
+      button {
+        width: 100px;
+        height: 35px;
+        margin-left: 10px;
+        cursor: pointer;
+        text-align: center;
+      }
+
+      p {
+        font-family: monospace;
+      }
+
+      .heading {
+        text-align: center;
+      }
+    </style>
+    <title>Chat-Room</title>
+  </head>
+
+  <body>
+    <header>
+      <h1 class="heading">Chat</h1>
+      <button phx-click="show-key">show room key</button>
+      <%= if @show_key? do %>
+        <span><%= @room_id %></span>
+      <% end %>
+      <p style="text-align: center;">
+        Currently chating in <strong>
+                    <%= @room_name %>
+                </strong>as
+        <strong>
+          <%= @username %>
+        </strong>
+      </p>
+    </header>
+    <main>
+      <div class="row">
+        <div class="col-left">
+          <p style="text-align: center;">Users</p>
+          <ul>
+            <%= for user <- @user_list do %>
+              <li>
+                <p class="users">
+                  <%= user %>
+                </p>
+              </li>
+            <% end %>
+          </ul>
+        </div>
+        <div class="col-right">
+          <p style="text-align: center;">Messages</p>
+          <div class="messages">
+            <ul phx-update="append" id="msgs">
+              <%= for message <- @messages do %>
+                <%= display_message(message) %>
+              <% end %>
+            </ul>
+          </div>
+          <div class="input-message-container">
+            <span><%= @writer %></span>
+            <form phx-submit="submit-message" phx-change="typing">
+              <label for="message-content">Message:</label> <br />
+              <input
+                type="text"
+                placeholder="Enter your message..."
+                name="message"
+                required
+                value={@message}
+                phx-click="hide-key"
+              />
+              <button type="submit">send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

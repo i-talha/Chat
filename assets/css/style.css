@@ -1,0 +1,73 @@
+.col-left {
+    float: left;
+    width: 20ch;
+    border: 1px solid palegreen;
+    margin-right: 20px;
+    overflow: auto;
+    margin-left: 20px;
+    height: 200px;
+    border-radius: 4px;
+
+}
+
+.row {
+    content: "";
+    display: table;
+    margin-top: 2px;
+    border: 1px solid green;
+    clear: both;
+}
+
+.col-right {
+    margin-left: 10px;
+    float: right;
+}
+
+li {
+    list-style-type: none;
+}
+
+.messages {
+    border: 1px solid palegreen;
+    overflow: auto;
+    height: 400px;
+    margin-right: 10px;
+}
+
+.message-content {
+    width: 100ch;
+}
+
+.input-message-container {
+    margin-top: 50px;
+}
+
+input {
+    margin-top: 5px;
+    height: 30px;
+    width: 50ch;
+    overflow: auto;
+    /* border: none; */
+    /* border-bottom: 2px solid red; */
+}
+
+button {
+    width: 100px;
+    height: 35px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+
+p {
+    font-family: monospace;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading {
+    text-align: center;
+}
